@@ -21,24 +21,21 @@ if __name__ == '__main__':
         # Insert new values into the table
         result = userProfile_screen.view_controller.get_history_from_database(signin_screen.success_user_name)
         if result:
-            fvrt_recipes = userProfile_screen.view_controller.get_favorite_recipes_from_database(
+            favorite_recipes = userProfile_screen.view_controller.get_favorite_recipes_from_database(
                 signin_screen.success_user_name)
             for value in result:
                 value = list(value)
-                if fvrt_recipes:
-                    if value[0] in [fvrt_recipe[0] for fvrt_recipe in fvrt_recipes]:
+                if favorite_recipes:
+                    if value[0] in [favorite_recipe[0] for favorite_recipe in favorite_recipes]:
                         userProfile_screen.recipe_table.insert("", "end", values=(value[0], value[1], "Yes"))
                         userProfile_screen.favorite_dict[value[0]] = True
                 else:
                     userProfile_screen.recipe_table.insert("", "end", values=(value[0], value[1], "No"))
                     userProfile_screen.favorite_dict[value[0]] = False
-
-            # for value in result:
-            #     userProfile_screen.recipe_table.insert("", "end", values=value)
         else:
             ms.showerror("Note", "You dont have any history yet")
 
-    def show_fvrt_recipes():
+    def show_favorite_recipes():
         # Delete previous values from the table
         userProfile_screen.recipe_table.delete(*userProfile_screen.recipe_table.get_children())
         # Insert new values into the table
@@ -47,8 +44,6 @@ if __name__ == '__main__':
             for value in result:
                 value = list(value)
                 value.append("Yes")
-                print("value = ",type(value))
-                print(value)
                 userProfile_screen.favorite_dict[value[0]] = True
                 userProfile_screen.recipe_table.insert("", "end", values=value)
         else:
@@ -59,34 +54,39 @@ if __name__ == '__main__':
         menu = Menu(userProfile_screen.user_profile_frame, tearoff=0)
         menu.add_command(label="Logout", command=logout)
         menu.add_command(label="History",command=show_history)
-        menu.add_command(label="Favorite Recipes", command=show_fvrt_recipes)
+        menu.add_command(label="Favorite Recipes", command=show_favorite_recipes)
         menu.post(event.x_root, event.y_root)
 
 
     def signin():
         username = signin_screen.signin_user_entry.get()
         pwd = signin_screen.signin_pwd_entry.get()
+        print(username,pwd)
         user_exist,pass_correct = signin_screen.view_controller.check_if_user_exist(username,pwd)
-        if len(pass_correct)==1:
-            signin_screen.success_user_name = username
-            clear_signin_fields()
-            avatar_frame = Frame(userProfile_screen.user_profile_frame, width=100, height=100, bg="gray")
-            avatar_frame.place(width=40, height=40, relx=0.95, rely=0.02)
-            name_initials = signin_screen.success_user_name[0].upper()
-            initials_label = Label(avatar_frame, text=name_initials, font=("Arial", 30), fg="white", bg="gray")
-            initials_label.place(relx=0.5, rely=0.5, anchor=CENTER)
-            initials_label.bind("<Button-1>", show_logout_menu)
-            Label(userProfile_screen.user_profile_frame, text="User Profile", bg='white', font=("Arial", 16)).place(relx=0.5, rely=0.05,
-                                                                                                anchor=CENTER)
-            Label(userProfile_screen.user_profile_frame, bg='white', text=f"Name: {signin_screen.success_user_name}").place(relx=0.5, rely=0.1,
-                                                                                          anchor=CENTER)
-            signin_screen.signin_frame.place_forget()
-            userProfile_screen.user_profile_frame.place(x=0, y=0)
-        elif len(username)==1 and len(pass_correct)==0:
-            clear_signin_fields()
-            ms.showerror('Oops!', 'Password is incorrect.')
+        if username!="Username" and pwd!="Password":
+            if len(pass_correct)==1:
+                signin_screen.success_user_name = username
+                clear_signin_fields()
+                avatar_frame = Frame(userProfile_screen.user_profile_frame, width=100, height=100, bg="gray")
+                avatar_frame.place(width=40, height=40, relx=0.95, rely=0.02)
+                name_initials = signin_screen.success_user_name[0].upper()
+                initials_label = Label(avatar_frame, text=name_initials, font=("Arial", 30), fg="white", bg="gray")
+                initials_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+                initials_label.bind("<Button-1>", show_logout_menu)
+                Label(userProfile_screen.user_profile_frame, text="User Profile", bg='white', font=("Arial", 16)).place(relx=0.5, rely=0.05,
+                                                                                                    anchor=CENTER)
+                Label(userProfile_screen.user_profile_frame, bg='white', text=f"Name: {signin_screen.success_user_name}").place(relx=0.5, rely=0.1,
+                                                                                              anchor=CENTER)
+                signin_screen.signin_frame.place_forget()
+                userProfile_screen.user_profile_frame.place(x=0, y=0)
+            elif len(user_exist)==1 and len(pass_correct)==0:
+                clear_signin_fields()
+                ms.showerror('Oops!', 'Password is incorrect.')
+            else:
+                ms.showerror('Oops!', 'Username does not exist.')
         else:
-            ms.showerror('Oops!', 'Username does not exist.')
+            ms.showerror("Error","All fields required")
+
 
     def clear_signin_fields():
         signin_screen.signin_user_entry.delete(0, END)
@@ -119,9 +119,8 @@ if __name__ == '__main__':
         if signup_screen.signup_user_entry.get() != 'Username' and p1 != 'Password' and p2 != 'Confirm Password':
             if p1 == p2:
                 result = signup_screen.view_controller.add_user_to_database(signup_screen.signup_user_entry.get(), p1)
-                print(result)
                 if result:
-                    ms.showerror('Error!', 'Username Taken Try a Diffrent One.')
+                    ms.showerror('Error!', 'Username Taken Try a Different One.')
                     clear_signup_fields()
                 else:
                     ms.showinfo('Success!', 'Account Created!')
@@ -170,14 +169,14 @@ if __name__ == '__main__':
         if userProfile_screen.favorite_dict[recipe]:
             result = userProfile_screen.view_controller.add_favorite_recipe_to_database(signin_screen.success_user_name,recipe,link)
             if result:
-                print(f"{recipe} added to favorite")
+                ms.showinfo("Success","Added to favorite")
 
         else:
             result = userProfile_screen.view_controller.remove_favorite_recipe_from_database(signin_screen.success_user_name,recipe)
             if result:
-                print(f"{recipe} removed from favorite")
+                ms.showinfo("Success","Removed from favorite")
             else:
-                print("Not deleted")
+                ms.showinfo("Failed","Unable to delete")
 
     def handle_click(event):
         # Handle clicks on the favorite checkbox
@@ -193,23 +192,25 @@ if __name__ == '__main__':
         input_str = userProfile_screen.ingredients_entry.get()
         userProfile_screen.recipe_table.delete(*userProfile_screen.recipe_table.get_children())
         rec = userProfile_screen.recipe_controller.get_recommendations(input_str)
-        recipe = rec['recipe'].tolist()
-        links = rec['url'].tolist()
-        fvrt_recipes = userProfile_screen.view_controller.get_favorite_recipes_from_database(
-            signin_screen.success_user_name)
-        # print(type(fvrt_recipes))
-        # print(fvrt_recipes)
-        for i in range(len(rec)):
-            if fvrt_recipes:
-                if recipe[i] in [fvrt_recipe[0] for fvrt_recipe in fvrt_recipes]:
-                    userProfile_screen.recipe_table.insert("", "end", values=(recipe[i], links[i], "Yes"))
-                    userProfile_screen.favorite_dict[recipe[i]] = True
-            else:
-                userProfile_screen.recipe_table.insert("", "end", values=(recipe[i], links[i],"No"))
-                userProfile_screen.favorite_dict[recipe[i]] = False
+        # print(rec['ingredients'].tolist()[0])
+        if len(rec)>=1:
+            recipe = rec['recipe'].tolist()
+            links = rec['url'].tolist()
+            favorite_recipes = userProfile_screen.view_controller.get_favorite_recipes_from_database(
+                signin_screen.success_user_name)
+            for i in range(len(rec)):
+                if favorite_recipes:
+                    if recipe[i] in [favorite_recipe[0] for favorite_recipe in favorite_recipes]:
+                        userProfile_screen.recipe_table.insert("", "end", values=(recipe[i], links[i], "Yes"))
+                        userProfile_screen.favorite_dict[recipe[i]] = True
+                    else:
+                        userProfile_screen.recipe_table.insert("", "end", values=(recipe[i], links[i],"No"))
+                        userProfile_screen.favorite_dict[recipe[i]] = False
+        else:
+            ms.showerror("Error", "No recipe exist with such ingredients")
 
     root = Tk()
-    root.title('RRS')
+    root.title('Recipe Recommender')
     root.geometry('925x500+300+200')
     root.configure(bg="#fff")
     root.resizable(False, False)
@@ -232,5 +233,4 @@ if __name__ == '__main__':
     userProfile_screen.get_recipe_button.update()
     userProfile_screen.recipe_table.bind("<Double-Button-1>", open_link)
     userProfile_screen.recipe_table.bind("<Button-1>",handle_click)
-    # app = (root)
     root.mainloop()
