@@ -5,6 +5,8 @@ from Signup_view import SignupView
 from UserProfile_view import UserProfileView
 import webbrowser
 
+
+
 if __name__ == '__main__':
     def create_account_frame():
         signin_screen.signin_frame.place_forget()
@@ -29,9 +31,9 @@ if __name__ == '__main__':
                     if value[0] in [favorite_recipe[0] for favorite_recipe in favorite_recipes]:
                         userProfile_screen.recipe_table.insert("", "end", values=(value[0], value[1], "Yes"))
                         userProfile_screen.favorite_dict[value[0]] = True
-                else:
-                    userProfile_screen.recipe_table.insert("", "end", values=(value[0], value[1], "No"))
-                    userProfile_screen.favorite_dict[value[0]] = False
+                    else:
+                        userProfile_screen.recipe_table.insert("", "end", values=(value[0], value[1], "No"))
+                        userProfile_screen.favorite_dict[value[0]] = False
         else:
             ms.showerror("Note", "You dont have any history yet")
 
