@@ -5,8 +5,6 @@ from Signup_view import SignupView
 from UserProfile_view import UserProfileView
 import webbrowser
 
-
-
 if __name__ == '__main__':
     def create_account_frame():
         signin_screen.signin_frame.place_forget()
@@ -17,6 +15,7 @@ if __name__ == '__main__':
         userProfile_screen.user_profile_frame.place_forget()
         signin_screen.signin_frame.place(x=0, y=0)
         userProfile_screen.recipe_table.delete(*userProfile_screen.recipe_table.get_children())
+        userProfile_screen.ingredients_entry.delete(0, 'end')
 
 
     def show_history():
