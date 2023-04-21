@@ -12,10 +12,12 @@ if __name__ == '__main__':
         signin_screen.signin_frame.place_forget()
         signup_screen.signup_frame.place(x=0, y=0)
 
+
     def logout():
         userProfile_screen.user_profile_frame.place_forget()
         signin_screen.signin_frame.place(x=0, y=0)
         userProfile_screen.recipe_table.delete(*userProfile_screen.recipe_table.get_children())
+
 
     def show_history():
         # Delete previous values from the table
@@ -37,6 +39,7 @@ if __name__ == '__main__':
         else:
             ms.showerror("Note", "You dont have any history yet")
 
+
     def show_favorite_recipes():
         # Delete previous values from the table
         userProfile_screen.recipe_table.delete(*userProfile_screen.recipe_table.get_children())
@@ -50,6 +53,7 @@ if __name__ == '__main__':
                 userProfile_screen.recipe_table.insert("", "end", values=value)
         else:
             ms.showerror("Note", "You dont have favorite recipes yet")
+
 
     def show_logout_menu(event):
         # Create a menu to display logout option
@@ -96,6 +100,7 @@ if __name__ == '__main__':
         signin_screen.signin_user_entry.insert(0, 'Username')
         signin_screen.signin_pwd_entry.insert(0, 'Password')
 
+
     def clear_signup_fields():
         signup_screen.signup_user_entry.delete(0, END)
         signup_screen.signup_pwd_entry.delete(0, END)
@@ -103,6 +108,7 @@ if __name__ == '__main__':
         signup_screen.signup_user_entry.insert(0, 'Username')
         signup_screen.signup_pwd_entry.insert(0, 'Password')
         signup_screen.signup_confirm_pwd_entry.insert(0, 'Confirm Password')
+
 
     def log():
         signup_screen.signup_user_entry.delete(0, END)
@@ -113,6 +119,7 @@ if __name__ == '__main__':
         signup_screen.signup_confirm_pwd_entry.insert(0, 'end')
         signup_screen.signup_frame.place_forget()
         signin_screen.signin_frame.place(x=0, y=0)
+
 
     def new_user():
         p1 = signup_screen.signup_pwd_entry.get()
@@ -133,9 +140,11 @@ if __name__ == '__main__':
         else:
             ms.showerror('Error!', 'All Fields Required')
 
+
     def show_signin_frame():
         signup_screen.signup_frame.place_forget()
         signin_screen.signin_frame.place(x=0, y=0)
+
 
     def open_link(event):
         item = userProfile_screen.recipe_table.selection()[0]
@@ -146,6 +155,7 @@ if __name__ == '__main__':
         if res:
             print("inserted")
         webbrowser.open_new_tab(link)
+
 
     def get_recipe_index(recipe):
         # Return the index of the row containing the recipe

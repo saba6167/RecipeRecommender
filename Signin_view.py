@@ -1,5 +1,6 @@
 from tkinter import *
 from controller import ViewController
+from PIL import Image, ImageTk
 
 class SigninView:
     def __init__(self,root):
@@ -23,9 +24,11 @@ class SigninView:
 
         self.signin_frame = Frame(self.root, width=925, height=500, bg='white')
         self.signin_frame.place(x=0, y=0)
-        self.login_image = PhotoImage(file='login.png')
+        # self.login_image = PhotoImage(file='login.png')
+        self.login_image = Image.open(r"login.jpg")
+        self.login_image = ImageTk.PhotoImage(self.login_image)
         self.image_label = Label(self.signin_frame, image=self.login_image, bg='white')
-        self.image_label.place(x=50, y=50)
+        self.image_label.place(x=80, y=60)
         self.signin_heading_label = Label(self.signin_frame, text='Sign in', fg='#57a1f8', bg='white',
                                           font=('Microsoft YaHei UI Light', 23, 'bold'))
         self.signin_heading_label.place(x=580, y=75)
