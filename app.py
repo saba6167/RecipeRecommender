@@ -204,6 +204,7 @@ if __name__ == '__main__':
         userProfile_screen.recipe_table.delete(*userProfile_screen.recipe_table.get_children())
         rec = userProfile_screen.recipe_controller.get_recommendations(input_str)
         # print(rec['ingredients'].tolist()[0])
+        print(rec)
         if len(rec)>=1:
             recipe = rec['recipe'].tolist()
             links = rec['url'].tolist()
@@ -215,8 +216,11 @@ if __name__ == '__main__':
                         userProfile_screen.recipe_table.insert("", "end", values=(recipe[i], links[i], "Yes"))
                         userProfile_screen.favorite_dict[recipe[i]] = True
                     else:
-                        userProfile_screen.recipe_table.insert("", "end", values=(recipe[i], links[i],"No"))
+                        userProfile_screen.recipe_table.insert("", "end", values=(recipe[i], links[i], "No"))
                         userProfile_screen.favorite_dict[recipe[i]] = False
+                else:
+                    userProfile_screen.recipe_table.insert("", "end", values=(recipe[i], links[i],"No"))
+                    userProfile_screen.favorite_dict[recipe[i]] = False
         else:
             ms.showerror("Error", "No recipe exist with such ingredients")
 

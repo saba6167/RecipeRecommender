@@ -75,17 +75,6 @@ class RecipeModel:
     def get_recommendations(self, N, scores):
         df_recipes = pd.read_csv("df_parsed.csv")
         top = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:N]
-        # recommendation = []
-        # for i in top:
-        #     recipe = {
-        #         "name": self.title_parser(df_recipes.loc[i, "recipe_name"]),
-        #         "ingredients": self.ingredient_parser_final(
-        #             df_recipes.loc[i, "ingredients"]
-        #         ),
-        #         "url": df_recipes.loc[i, "recipe_urls"],
-        #         "score": f"{scores[i]}",
-        #     }
-        #     recommendation.append(recipe)
         recommendation = pd.DataFrame(columns=["recipe", "ingredients", "score", "url"])
         count = 0
         for i in top:
