@@ -8,10 +8,10 @@ class RecipeController:
         # create an instance of RecipeModel
         self.recipe_model = RecipeModel()
         # load the trained Word2Vec model
-        self.recipe_model.load_model(r'C:\Users\mehmo\AppData\Roaming\JetBrains\PyCharmCE2022.2\scratches\RecipeRecommendationSystem_V1\MVC\Controllers\model_cbow.bin')
+        self.recipe_model.load_model(r'./MVC/Controllers/model_cbow.bin')
         # load the recipe data
         self.obj = IngredientParserController()
-        self.recipe_model.load_data(r'C:\Users\mehmo\AppData\Roaming\JetBrains\PyCharmCE2022.2\scratches\RecipeRecommendationSystem_V1\MVC\Controllers\df_parsed.csv')
+        self.recipe_model.load_data(r'./MVC/Controllers/df_parsed.csv')
         self.recipe_model.data['parsed'] =  self.recipe_model.data.ingredients.apply(self.obj.parse_ingredients)
         # preprocess and sort the ingredients in the data
         self.recipe_model.get_and_sort_corpus()
