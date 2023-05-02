@@ -27,7 +27,7 @@ class SigninView:
         self.signin_frame.place(x=0, y=0)
 
         # Load and display the login image
-        self.login_image = Image.open(r"/Users/saumya/RecipeRecommender/MVC/Views/login.jpg")
+        self.login_image = Image.open(r"./MVC/Views/login.jpg")
         self.login_image = ImageTk.PhotoImage(self.login_image)
         self.image_label = Label(self.signin_frame, image=self.login_image, bg='white')
         self.image_label.place(x=80, y=60)
