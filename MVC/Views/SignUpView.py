@@ -27,7 +27,7 @@ class SignupView:
         self.signup_frame = Frame(self.root, width=925, height=500, bg='#fff')
 
         # Load and display the signup gif
-        self.frames = self.load_frames(r'C:\Users\mehmo\AppData\Roaming\JetBrains\PyCharmCE2022.2\scratches\RecipeRecommendationSystem_V1\MVC\Views\signup.gif')
+        self.frames = self.load_frames(r'/Users/saumya/RecipeRecommender/MVC/Views/signup.gif')
         label = Label(self.signup_frame, border=0, bg='white')
         label.place(x=50, y=40)
         label.cancel = label.after(0, self.play, self.frames, label)
