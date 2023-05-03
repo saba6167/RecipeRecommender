@@ -1,23 +1,23 @@
 from tkinter import *
 from tkinter import messagebox as ms
-from MVC.Views.SignInView import SigninView
-from MVC.Views.SignUpView import SignupView
+from MVC.Views.SignInView import SignInView
+from MVC.Views.SignUpView import SignUpView
 from MVC.Views.UserProfileView import UserProfileView
 import webbrowser
 from Observer.RecipeObserver import RecipeObserver
 from Observer.RecipeHistory import RecipeHistory
 
-class RecipeRecommenderSystem:
+class RecipeRecommender:
     __instance = None
 
     def __init__(self):
         # Creating a singleton instance
-        if RecipeRecommenderSystem.__instance is not None:
+        if RecipeRecommender.__instance is not None:
             raise Exception("Singleton instance already exists")
         else:
             # Creating a root window and configuring its properties
             self.root = Tk()
-            self.root.title('RRS')
+            self.root.title('Recipe Recommender')
             self.root.geometry('925x500+300+200')
             self.root.configure(bg="#fff")
             self.root.resizable(False, False)
@@ -30,14 +30,14 @@ class RecipeRecommenderSystem:
             self.recipe_observer.attach(self.history)
 
             # Creating an instance of SigninView class and configuring its buttons
-            self.signin_screen = SigninView(self.root)
+            self.signin_screen = SignInView(self.root)
             self.signin_screen.signin_frame_signup_button.configure(command=self.create_account_frame)
             self.signin_screen.signin_frame_signup_button.update()
             self.signin_screen.signin_button.configure(command=self.signin)
             self.signin_screen.signin_button.update()
 
             # Creating an instance of SignupView class and configuring its buttons
-            self.signup_screen = SignupView(self.root)
+            self.signup_screen = SignUpView(self.root)
             self.signup_screen.signup_button.configure(command=self.new_user)
             self.signup_screen.signup_button.update()
             self.signup_screen.signup_frame_signin_button.configure(command=self.show_signin_frame)

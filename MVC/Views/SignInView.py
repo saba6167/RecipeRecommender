@@ -2,7 +2,7 @@ from tkinter import *
 from MVC.Controllers.ViewController import ViewController
 from PIL import Image, ImageTk
 
-class SigninView:
+class SignInView:
     def __init__(self,root):
 
         self.root = root
