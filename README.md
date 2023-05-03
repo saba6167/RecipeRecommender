@@ -20,3 +20,5 @@ Note:
 Additional Information
 
 The Recipe Recommender application is an interactive recipe recommendation system that provides users with personalized recipe suggestions based on their dietary preferences and previous search history.
+
+![img.png](img.png)
