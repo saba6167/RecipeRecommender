@@ -1,5 +1,5 @@
 from tkinter import *
-from MVC.Controllers.ViewsController import ViewController
+from MVC.Controllers.ViewController import ViewController
 from PIL import Image, ImageTk
 
 class SigninView:

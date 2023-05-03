@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from MVC.Controllers.RecipeController import RecipeController
-from MVC.Controllers.ViewsController import ViewController
+from MVC.Controllers.ViewController import ViewController
 
 class UserProfileView:
     def __init__(self, root):
