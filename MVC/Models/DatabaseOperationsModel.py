@@ -1,6 +1,6 @@
 import sqlite3
 
-class DatabaseOperations:
+class DatabaseOperationsModel:
     # Method to authenticate a user with a given username and password
     def authenticate_user(self, username, password):
         with sqlite3.connect('RecipeRecommender.db') as db:

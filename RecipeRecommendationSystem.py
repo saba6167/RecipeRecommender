@@ -7,12 +7,12 @@ import webbrowser
 from Observer.RecipeObserver import RecipeObserver
 from Observer.RecipeHistory import RecipeHistory
 
-class Application:
+class RecipeRecommenderSystem:
     __instance = None
 
     def __init__(self):
         # Creating a singleton instance
-        if Application.__instance is not None:
+        if RecipeRecommenderSystem.__instance is not None:
             raise Exception("Singleton instance already exists")
         else:
             # Creating a root window and configuring its properties

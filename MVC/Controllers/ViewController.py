@@ -1,9 +1,9 @@
-from MVC.Models.DatabaseOperationsModel import DatabaseOperations
+from MVC.Models.DatabaseOperationsModel import DatabaseOperationsModel
 
 class ViewController:
     def __init__(self):
         # create an instance of DatabaseOperations to interact with the database
-        self.database_operations = DatabaseOperations()
+        self.database_operations = DatabaseOperationsModel()
 
     def check_if_user_exist(self, username, pwd):
         # check if the given username and password exist in the database
