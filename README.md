@@ -23,7 +23,7 @@ The Recipe Recommender application is an interactive recipe recommendation syste
 
 ![img.png](img.png)
 
-Third-Party code vs. Original code Statement
+Third-Party code vs. Original code
 
 We utilized a reference post by Jack Leitch on Medium (https://towardsdatascience.com/building-a-recipe-recommendation-api-using-scikit-learn-nltk-docker-flask-and-heroku-bfc6c4bdd2d4) for guidance on our model training approach in developing a recipe recommendation system. However, we made modifications to the code to account for updates since the post was published in 2020. Our initial step involved scraping data from the Jamie Oliver website, specifically the recipes section located at https://www.jamieoliver.com/recipes/category/course/mains/. We only used the code provided by Jack Leitch for the model training process, and we followed his guidelines but incorporated our own ideas and adaptations specific to our semester project.
 For our desktop application, we built it entirely from scratch, implementing design patterns that we deemed suitable for our project. We did not seek any assistance or reference code for the application development aspect, ensuring that it was entirely our original work.
