@@ -6,7 +6,7 @@ import nltk
 import unidecode
 from nltk.stem import WordNetLemmatizer
 
-class IngredientParser:
+class IngredientParserModel:
     def __init__(self):
         # list of measures for ingredients
         self.measures = ['teaspoon', 't', 'tsp.', 'tablespoon', 'T', 'tbl.', 'tb', 'tbsp.', 'fluid ounce', 'fl oz', 'gill',

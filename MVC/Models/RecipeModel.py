@@ -3,8 +3,8 @@ import ast
 import pandas as pd
 import unidecode
 from gensim.models import Word2Vec
-from MVC.Models.TfidfEmbeddingVectorizerModel import TfidfEmbeddingVectorizer
-from MVC.Models.MeanEmbeddingVectorizerModel import MeanEmbeddingVectorizer
+from MVC.Models.TfidfEmbeddingVectorizerModel import TfidfEmbeddingVectorizerModel
+from MVC.Models.MeanEmbeddingVectorizerModel import MeanEmbeddingVectorizerModel
 from MVC.Models.Strategy.RecipeVectorizer import RecipeVectorizer
 
 class RecipeModel:
@@ -70,13 +70,13 @@ class RecipeModel:
     def fit(self, method="tfidf"):
         if method == "mean":
             # Use the mean embedding vectorizer to transform the corpus into document vectors
-            self.mean_vec_tr = RecipeVectorizer(MeanEmbeddingVectorizer(self.model))
+            self.mean_vec_tr = RecipeVectorizer(MeanEmbeddingVectorizerModel(self.model))
             self.doc_vec = self.mean_vec_tr.do_transform(self.corpus)
             self.doc_vec = [doc.reshape(1, -1) for doc in self.doc_vec]
             assert len(self.doc_vec) == len(self.corpus)
         else:
             # Use the TF-IDF embedding vectorizer to transform the corpus into document vectors
-            self.tfidf_vec_tr = RecipeVectorizer(TfidfEmbeddingVectorizer(self.model))
+            self.tfidf_vec_tr = RecipeVectorizer(TfidfEmbeddingVectorizerModel(self.model))
             self.tfidf_vec_tr.perform_fit(self.corpus)
             self.doc_vec = self.tfidf_vec_tr.do_transform(self.corpus)
             self.doc_vec = [doc.reshape(1, -1) for doc in self.doc_vec]

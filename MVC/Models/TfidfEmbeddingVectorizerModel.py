@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from MVC.Models.Strategy.DefaultRecipeVectorizer import DefaultRecipeVectorizer
 
-class TfidfEmbeddingVectorizer(DefaultRecipeVectorizer):
+class TfidfEmbeddingVectorizerModel(DefaultRecipeVectorizer):
     def __init__(self, word_model):
         # Constructor to initialize the object with a given word_model
         self.word_model = word_model
