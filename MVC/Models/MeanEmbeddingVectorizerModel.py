@@ -2,6 +2,8 @@ import numpy as np
 from MVC.Models.Strategy.DefaultRecipeVectorizer import DefaultRecipeVectorizer
 
 class MeanEmbeddingVectorizerModel(DefaultRecipeVectorizer):
+    # Polymorphism: The MeanEmbeddingVectorizerModel class defines its own implementation of the fit() and
+    # transform() methods, which are also defined in the parent class DefaultRecipeVectorizer
     def __init__(self, word_model):
         # Constructor to initialize the object with a given word_model
         self.word_model = word_model

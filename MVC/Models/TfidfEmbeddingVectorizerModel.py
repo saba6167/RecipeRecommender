@@ -4,6 +4,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from MVC.Models.Strategy.DefaultRecipeVectorizer import DefaultRecipeVectorizer
 
 class TfidfEmbeddingVectorizerModel(DefaultRecipeVectorizer):
+    # Encapsulation: The TfidfEmbeddingVectorizerModel class encapsulates the functionality related to the
+    # vectorization of natural language text.The class has attributes and methods that are specific to this task,
+    # making it easier to maintain and modify the code.
     def __init__(self, word_model):
         # Constructor to initialize the object with a given word_model
         self.word_model = word_model
