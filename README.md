@@ -12,6 +12,9 @@ Special Instructions to Run the Code:
 2. Install files from requirements.txt
 3. Run main.py to launch the Recipe Recommender application.
 
+Recorded Demonstration Video Link:
+- https://drive.google.com/drive/folders/1vipDq0NaKT7AOp0CoOByG6P4m6W7gjJH?usp=sharing
+
 Note:
 
 - The user needs to have an active internet connection to use the Recipe Recommender application.
