@@ -7,6 +7,14 @@ import webbrowser
 from Observer.RecipeObserver import RecipeObserver
 from Observer.RecipeHistory import RecipeHistory
 
+# MVC Framework: The MVC pattern divides an application into three interconnected components: the Model, the View,
+# and the Controller. The Model represents the application data and business logic; the View is responsible for displaying
+# data to the user and receiving input from the user; and the Controller acts as an intermediary between the Model and
+# the View.
+# The complete code implements the MVC pattern by defining classes for each component: SignInView, SignUpView and UserProfileview
+# for the view; IngredientsParserController, RecipeController and ViewController for the Controller and DatabaseOperationsModel,
+# IngredientParserModel and RecipeModel for the Model.
+
 class RecipeRecommender:
     __instance = None
 

@@ -1,7 +1,14 @@
 # This class provides a wrapper for a vectorizer to use with recipe text data.
 
 class RecipeVectorizer:
-
+    # Strategy: The code uses the Strategy design pattern to implement different vectorization strategies for the
+    # RecipeModel class. The RecipeVectorizer class is the strategy interface, and the TfidfEmbeddingVectorizerModel
+    # and MeanEmbeddingVectorizerModel classes are concrete strategy implementations. The RecipeVectorizer class has
+    # two methods: perform_fit and do_transform, which take a vectorizer as input and fit and transform the corpus
+    # into document vectors, respectively. The TfidfEmbeddingVectorizerModel and MeanEmbeddingVectorizerModel classes
+    # implement the fit method of the vectorizer, which fits the vectorizer to the provided corpus and returns the
+    # fitted vectorizer. The RecipeModel class uses the RecipeVectorizer class to transform the corpus into document
+    # vectors.
     def __init__(self, vectorizer):
         # Constructor to initialize the RecipeVectorizer instance.
         # It takes a vectorizer as input parameter.
